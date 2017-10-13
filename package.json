@@ -1,0 +1,29 @@
+{
+  "name": "declarative-state-machine",
+  "version": "1.0.0",
+  "description": "Declarative State Machine Framework",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janghaksang/dsm.git"
+  },
+  "author": "janghaksang <janghaksang@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janghaksang/dsm/issues"
+  },
+  "homepage": "https://github.com/janghaksang/dsm#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1"
+  },
+  "dependencies": {
+    "babel-register": "^6.26.0"
+  }
+}
