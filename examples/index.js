@@ -34,12 +34,12 @@ console.log('----');
 
 class BranchingFlow extends StateMachine {
   constructor() {
-    super();
-
-    this.has(new State({name:'green',active:true}));
-    this.has(new State({name:'yellow'}));
-    this.has(new State({name:'red'}));
-    this.has(new State({name:'final'}));
+    super([
+      new State({name:'green',active:true}),
+      new State({name:'yellow'}),
+      new State({name:'red'}),
+      new State({name:'final'})
+    ]);
 
     this.state('green').transit('warn',this.state('yellow'));
     this.state('green').transit('panic',this.state('red'));
