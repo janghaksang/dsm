@@ -32,24 +32,24 @@ var State = function State(props) {
   this.name = function () {
     return priv.name;
   };
-  this.transit = function (event, state) {
-    priv.transitables[event] = state;
+  this.transit = function (signal, state) {
+    priv.transitables[signal] = state;
   };
-  this.run = function (event, callback) {
-    priv.runnables[event] = callback;
+  this.act = function (signal, action) {
+    priv.runnables[signal] = action;
   };
-  this.onTransit = function (machine, event) {
-    var next = priv.transitables[event];
+  this.onTransit = function (machine, signal) {
+    var next = priv.transitables[signal];
     if (next) {
       _this.activate(false);
       next.activate(true);
       machine.current = next.index();
     }
   };
-  this.onRun = function (machine, event) {
-    var callback = priv.runnables[event];
-    if (callback) {
-      callback();
+  this.onAct = function (machine, signal) {
+    var action = priv.runnables[signal];
+    if (action) {
+      action();
     }
   };
 };

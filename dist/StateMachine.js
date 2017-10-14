@@ -51,21 +51,21 @@ var StateMachine = function StateMachine(initials) {
   this.states = function () {
     return priv.states;
   };
-  var onEvent = function onEvent(event, sender) {
+  var onEvent = function onEvent(signal, sender) {
     if (sender) {
-      sender.onRun(priv, event);
-      sender.onTransit(priv, event);
+      sender.onAct(priv, signal);
+      sender.onTransit(priv, signal);
     } else {
       if (!(0 <= priv.current && priv.current < priv.states.length)) return;
-      _this.current().onRun(priv, event);
-      _this.current().onTransit(priv, event);
+      _this.current().onAct(priv, signal);
+      _this.current().onTransit(priv, signal);
     }
   };
-  priv.eventLoop.on('state-event', function (event, sender) {
-    return onEvent.call(_this, event, sender);
+  priv.eventLoop.on('state-event', function (signal, sender) {
+    return onEvent.call(_this, signal, sender);
   });
-  this.transit = function (event) {
-    return priv.eventLoop.emit('state-event', event);
+  this.send = function (signal) {
+    return priv.eventLoop.emit('state-event', signal);
   };
 
   if (initials) {

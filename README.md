@@ -17,22 +17,22 @@ dsm.state('liquid').transit('freeze',dsm.state('solid'));
 dsm.state('liquid').transit('vaporize',dsm.state('gas'));
 dsm.state('gas').transit('condense',dsm.state('liquid'));
 
-dsm.state('solid').run('melt',()=>console.log('I melted'));
-dsm.state('liquid').run('freeze',()=>console.log('I freezed'));
-dsm.state('liquid').run('vaporize',()=>console.log('I vaporized'));
-dsm.state('gas').run('condense',()=>console.log('I condensed'));
+dsm.state('solid').act('melt',()=>console.log('I melted'));
+dsm.state('liquid').act('freeze',()=>console.log('I freezed'));
+dsm.state('liquid').act('vaporize',()=>console.log('I vaporized'));
+dsm.state('gas').act('condense',()=>console.log('I condensed'));
 
-dsm.state('solid').run('activated',()=>console.log('I am solid'));
-dsm.state('liquid').run('activated',()=>console.log('I am liquid'));
-dsm.state('gas').run('activated',()=>console.log('I am gas'));
+dsm.state('solid').act('activated',()=>console.log('I am solid'));
+dsm.state('liquid').act('activated',()=>console.log('I am liquid'));
+dsm.state('gas').act('activated',()=>console.log('I am gas'));
 
 console.log(dsm.current().name());
 
-dsm.transit('melt');
-dsm.transit('freeze');
-dsm.transit('melt');
-dsm.transit('vaporize');
-dsm.transit('condense');
+dsm.send('melt');
+dsm.send('freeze');
+dsm.send('melt');
+dsm.send('vaporize');
+dsm.send('condense');
 
 console.log(dsm.current().name());
 
@@ -55,10 +55,10 @@ class BranchingFlow extends StateMachine {
     this.state('red').transit('calm',this.state('yellow'));
     this.state('red').transit('finish',this.state('final'));
 
-    this.state('green').run('activated',()=>console.log('green'));
-    this.state('yellow').run('activated',()=>console.log('yellow'));
-    this.state('red').run('activated',()=>console.log('red'));
-    this.state('final').run('activated',()=>console.log('final'));
+    this.state('green').act('activated',()=>console.log('green'));
+    this.state('yellow').act('activated',()=>console.log('yellow'));
+    this.state('red').act('activated',()=>console.log('red'));
+    this.state('final').act('activated',()=>console.log('final'));
   }
 }
 
@@ -66,15 +66,15 @@ let bf = new BranchingFlow();
 
 console.log(bf.current().name());
 
-bf.transit('warn');
-bf.transit('clear');
-bf.transit('panic');
-bf.transit('clear');
-bf.transit('warn');
-bf.transit('panic');
-bf.transit('calm');
-bf.transit('panic');
-bf.transit('finish');
+bf.send('warn');
+bf.send('clear');
+bf.send('panic');
+bf.send('clear');
+bf.send('warn');
+bf.send('panic');
+bf.send('calm');
+bf.send('panic');
+bf.send('finish');
 
 console.log(bf.current().name());
 ```
