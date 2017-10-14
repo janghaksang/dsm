@@ -1,6 +1,6 @@
 {
   "name": "declarative-state-machine",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Declarative State Machine Framework",
   "main": "dist/index.js",
   "directories": {
